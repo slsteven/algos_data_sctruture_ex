@@ -51,4 +51,39 @@ Singlylist.prototype.searchNodeAt = function(position){
 }
 
 result = ssl.searchNodeAt(1);
-console.log(result);
+
+
+Singlylist.prototype.remove = function(position){
+  var currentNode = this.head;
+  var count = 0;
+  if(position < 0 || position > this._length || this._length === 0){
+    return false;
+  }
+  //position = 1
+  if(position ===1){
+    this.head = currentNode.next;
+    this._length--;
+    currentNode = null;
+    return currentNode;
+  }
+  var node_before = null;
+  var node_to_delete = null;
+
+  while(count != position){
+    node_before = currentNode;
+    currentNode = currentNode.next;
+    count++;
+  }
+  node_before.next = currentNode.next;
+  node_to_delete = currentNode;
+  currentNode = null;
+  this._length--;
+  return  node_to_delete
+}
+
+// ssl.add(100);
+// res = ssl.searchNodeAt(2);
+// console.log(ssl)
+// console.log(res);
+// ssl.remove(1);
+// console.log(ssl);
