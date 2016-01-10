@@ -55,7 +55,7 @@ Queue.prototype.enqueue = function(data){
   this._storage[this._newestIndex] = data;
   this._newestIndex++;
 };
-
+//remove
 Queue.prototype.dequeue = function(data){
   if(this._oldestIndex !== this._newestIndex){
     var oldestIndex = this._oldestIndex;
