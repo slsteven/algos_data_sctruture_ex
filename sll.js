@@ -32,7 +32,8 @@ Singlylist.prototype.add = function(value){
 
 ssl = new Singlylist();
 ssl.add(10);
-ssl.add(33);
+ssl.add(20);
+ssl.add(30);
 console.log(ssl);
 
 Singlylist.prototype.searchNodeAt = function(position){
@@ -90,22 +91,19 @@ Singlylist.prototype.remove = function(position){
 
 //reverse sll
 
-Singlylist.prototype.reverse = function(list){
+Singlylist.prototype.reverse = function(){
   var currentNode = this.head;
   var next = null;
   var before = null;
   while(currentNode){
     after = currentNode.next;
     currentNode.next = before;
+
     before = currentNode;
     currentNode = after;
   }
   this.head = before;
 }
-
-
-
-
 
 
 
