@@ -3,8 +3,8 @@
 //look for minimum number in unsorted list and move to sorted list
 //repeat and append new min to sorted list
 
-var bigo = [5, 4, 3, 2, 1]; //n^2
-var bigomega = [1, 2, 3, 4, 5]; //n^2
+var bigo = [5, 4, 3, 2, 1]; //O(n^2)
+var bigomega = [1, 2, 3, 4, 5]; //O(n^2)
 
 
 function selectionSort(arr){
@@ -34,5 +34,5 @@ function selectionSort(arr){
   return arr;
 }
 
-var result = selectionSort(bigo);
-console.log(result);
+// var result = selectionSort(bigo);
+// console.log(result);

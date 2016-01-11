@@ -1,6 +1,6 @@
 //bubble sort
 
-var bigo = [5, 4, 3, 2, 1]; //
+var bigo = [5, 4, 3, 2, 1]; //worst case
 var bigomega = [1, 2, 3, 4, 5]; //best case
 
 //4(n-1) ...linear
