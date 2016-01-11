@@ -6,23 +6,27 @@
 function bubbleSort(arr){
   var len = arr.length;
   var temp = 0;
-  var swapped = false;
-  while(!swapped){
-    for(var i = 0; i < len-1; i++){
+  var swapping = true;
+  while(swapping){
+    var count = 0;
+    for(var i = 0; i < len; i++){
       //left value greater than right. swap.
       if(arr[i] > arr[i+1]){
         temp = arr[i];
         arr[i] = arr[i+1];
         arr[i+1] = temp;
-        swapped = false;
+        count++;
       }
-      else{
-        swapped = true;
-      }
+    }
+    if(count > 0){
+      swapped = true;
+    }
+    else{
+      swapping = false;
     }
   }
   return arr
 }
 
-var result = bubbleSort([1, 4, 2, 3, 5]);
+var result = bubbleSort([1, 2, 4, 3, 5]);
 console.log(result);
