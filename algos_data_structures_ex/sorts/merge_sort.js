@@ -1,16 +1,28 @@
 //merge sort
+//split into left and right halves using recursion
+//once broken down to n<2, call merge to start
+//putting it back together.
+
 //O(n log n)
 var arr = [5, 3, 9, 1, 6, 7, 8, 4, 2];
 
 function mergeSort(arr){
   var left = [];
   var right = [];
-  var mid = Math.floor(arr.length/2);
-  left = selectionSort(arr.slice(0, mid));
-  right = selectionSort(arr.slice(mid));
-  console.log(left, right)
-  var merged = merge(left, right, arr);
-  return merged;
+  var len = arr.length;
+  if(len < 2){
+    return;
+  }
+  else {
+    var mid = Math.floor(len/2);
+    //use selection sort to sort left and right halves
+    left = arr.slice(0, mid);
+    right = arr.slice(mid);
+    console.log(left, right, arr)
+    mergeSort(left);
+    mergeSort(right);
+    return merge(left, right, arr);
+  }
 }
 
 var result = mergeSort(arr);
@@ -29,41 +41,17 @@ function merge(left, right, arr){
     }
     k++;
   }
-  while(l < left.length && r == right.length) {
+  //if there are remaining numbers on the left
+  while(l < left.length) {
     arr[k] = left[l];
     l++;
     k++;
   }
-  while(l == left.length && r <right.length) {
+  //if there are remaining numbers on the right
+  while(r < right.length) {
     arr[k] = right[r];
     r++;
     k++;
   }
   return arr
-}
-function selectionSort(arr){
-  var min = 0;
-  var new_min_idx = 0;
-  var len = arr.length;
-  var temp = 0;
-  for(var i = 0; i < len; i++){
-    console.log("START OF ITERATION")
-    min = arr[i];
-    //iterate through whole array to find min
-    for(var j = i+1; j < len; j++){
-      console.log("SCAN EACH===========", j)
-      if(arr[j] < min){
-        min = arr[j];
-        new_min_idx = j;
-      }
-    }
-    //move min to sorted side of list
-    if(min == arr[new_min_idx]){
-      temp = arr[i];
-      arr[i] = arr[new_min_idx];
-      arr[new_min_idx] = temp;
-    }
-    console.log("END");
-  }
-  return arr;
 }
