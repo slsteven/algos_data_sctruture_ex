@@ -29,6 +29,7 @@ var result = mergeSort(arr);
 console.log(result);
 
 function merge(left, right, arr){
+  //index for left, right, and original array
   var l = r = k = 0;
   while(l < left.length && r < right.length){
     if(left[l] <= right[r]){
