@@ -1,4 +1,5 @@
-//Stacks (LIFO) and Queues (FIFO)
+//Stacks (LIFO)
+// O(1) runtime = contant time
 
 
 function Stack(){
@@ -33,13 +34,23 @@ Stack.prototype.pop = function(){
   }
 };
 
+Stack.prototype.display = function(){
+  console.log(this);
+}
 
-var mystack = new Stack();
-console.log(mystack)
-mystack.pop();
-mystack.push(10);
-// mystack.push(20)
-console.log(mystack)
+
+var stack = new Stack();
+stack.push("Bulbasaur");
+stack.push("Charmander");
+stack.push("Squirtle");
+stack.display();
+console.log("Taking out Squirtle");
+stack.pop();
+stack.display();
+console.log("Adding Pikachu");
+stack.push("Pikachu");
+stack.display();
+
 
 function Queue(){
   this._oldestIndex = 1;
@@ -66,6 +77,10 @@ Queue.prototype.dequeue = function(data){
     return data_to_delete;
   }
 };
+
+Queue.prototype.display = function(){
+
+}
 
 myque = new Queue();
 myque.enqueue(10);
