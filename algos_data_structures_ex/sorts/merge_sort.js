@@ -1,7 +1,6 @@
 //merge sort
 //split into left and right halves using recursion
-//once broken down to n<2, call merge to start
-//putting it back together.
+//once broken down to n<2, call merge to start putting it back together.
 
 //O(n log n)
 var arr = [5, 3, 9, 1, 6, 7, 8, 4, 2];
