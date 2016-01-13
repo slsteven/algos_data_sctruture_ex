@@ -30,11 +30,7 @@ Singlylist.prototype.add = function(value){
   }
 }
 
-ssl = new Singlylist();
-ssl.add(10);
-ssl.add(20);
-ssl.add(30);
-console.log(ssl);
+
 
 Singlylist.prototype.searchNodeAt = function(position){
   var currentNode = this.head;
@@ -51,7 +47,7 @@ Singlylist.prototype.searchNodeAt = function(position){
   }
 }
 
-result = ssl.searchNodeAt(1);
+
 
 
 Singlylist.prototype.remove = function(position){
@@ -105,6 +101,23 @@ Singlylist.prototype.reverse = function(){
   this.head = before;
 }
 
+Singlylist.prototype.insert = function(pos, val){
+  var currentNode = this.head;
+  var new_node = new Node(val);
+  if(this._length < 0 || pos > this._length){
+    return false;
+  }
+  for(var i = 1; i <= pos; i++){
+    currentNode = currentNode.next;
+  }
+  new_node.next = currentNode.next;
+  currentNode.next = new_node;
+}
 
+Singlylist.prototype.display = function(){
+  console.log(this);
+}
 
-
+var sll = new Singlylist();
+sll.add(10);
+sll.display();
