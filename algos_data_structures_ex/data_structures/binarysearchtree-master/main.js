@@ -12,10 +12,11 @@ bst.insert(38);
 bst.insert(2);
 console.log("\n\nIN ORDER");
 bst.inOrder(bst.root);
-// console.log("\n\nPRE ORDER");
-// bst.preOrder(bst.root);
-// console.log("\n\nPOST ORDER");
-// bst.postOrder(bst.root);
+console.log("\n\nPRE ORDER");
+bst.preOrder(bst.root);
+console.log("\n\nPOST ORDER");
+bst.postOrder(bst.root);
+
 
 
 

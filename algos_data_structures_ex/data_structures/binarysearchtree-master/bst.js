@@ -38,10 +38,14 @@ var BST = (function(){
   BST.prototype.inOrder = function(node) {
     var result = [];
     var traverse = function(node){
+      if(node == null){
+        return;
+      }
       if(node.left !== null){
         traverse(node.left);
       }
       result.push(node.data);
+
       if(node.right !== null){
         traverse(node.right);
       }
@@ -51,9 +55,40 @@ var BST = (function(){
   };
 
   BST.prototype.preOrder = function(node) {
+    var result = [];
+    var traverse = function(node){
+      if(node == null){
+        return;
+      }
+      result.push(node.data);
+      if(node.left !== null){
+        traverse(node.left);
+      }
+      if(node.right !== null){
+        traverse(node.right);
+      }
+    }
+    traverse(node);
+    console.log(result);
   };
 
   BST.prototype.postOrder = function(node) {
+    var result = [];
+    var traverse = function(node){
+      if(node == null){
+        return;
+      }
+      if(node.left !== null){
+        traverse(node.left);
+      }
+      if(node.right !== null){
+        traverse(node.right);
+      }
+      result.push(node.data);
+
+    }
+    traverse(node);
+    console.log(result);
   };
 
 
@@ -61,3 +96,14 @@ var BST = (function(){
 })();
 
 module.exports = BST;
+
+
+
+
+
+
+
+
+
+
+
