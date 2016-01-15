@@ -67,7 +67,7 @@ var BST = (function(){
     while (currentNode.left !== null) {
       currentNode = currentNode.left;
     }
-    return currentNode.data;
+    return currentNode;
   }
 
   BST.prototype.getMax = function() {
@@ -76,7 +76,7 @@ var BST = (function(){
     while (currentNode.right !== null) {
       currentNode = currentNode.right;
     }
-    return currentNode.data;
+    return currentNode;
   }
 
   BST.prototype.find = function(data) {
@@ -92,6 +92,56 @@ var BST = (function(){
       }
     }
     return currentNode;
+  }
+
+  //case 1: no child
+  //case 2: one child
+  //case 3: two children
+
+  //(3) find min in right subtree => copy val in target node, delete duplicate
+  //(3) find max in left subtree => copy val in target node, delete duplicate
+  BST.prototype.delete = function(node, data){
+    var currentNode = node.root;
+    var parent = null;
+    var min = null;
+    var max = null;
+
+    while(currentNode.data !== data){
+      if(currentNode.data < data){
+        parent = currentNode;
+        currentNode = currentNode.left;
+      } else {
+        parent = currentNode;
+        currentNode = currentNode.right;
+      }
+      if(currentNode === null){
+        return null;
+      }
+    }
+
+    if(currentNode.left === null && currentNode.right === null){
+      if(currentNode.data < parent.data){
+        parent.left = null;
+      } else {
+        parent.right = null;
+      }
+    }
+    //case 2: one child - left
+    if(currentNode.left && (currentNode.right === null)){
+      parent.left = currentNode.left;
+    }
+
+    //case 2: one child - right
+    if(currentNode.right && (currentNode.left === null)){
+        parent.right = currentNode.right;
+      }
+    //case 3: two children
+    if(currentNode.left && currentNode.right){
+      max = currentNode.left.findMax();
+      console.log(max);
+      ///===============
+
+    }
   }
 
 
