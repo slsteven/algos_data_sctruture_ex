@@ -63,7 +63,7 @@ var BST = (function(){
   //could solve recursively if getMin accepts an argument
   BST.prototype.getMin = function() {
     var currentNode = this.root;
-    console.log(currentNode.left)
+    // console.log(currentNode.left)
     while (currentNode.left !== null) {
       currentNode = currentNode.left;
     }
@@ -72,7 +72,7 @@ var BST = (function(){
 
   BST.prototype.getMax = function() {
     var currentNode = this.root;
-    console.log(currentNode.right)
+    // console.log(currentNode.right)
     while (currentNode.right !== null) {
       currentNode = currentNode.right;
     }
@@ -100,25 +100,29 @@ var BST = (function(){
 
   //(3) find min in right subtree => copy val in target node, delete duplicate
   //(3) find max in left subtree => copy val in target node, delete duplicate
-  BST.prototype.delete = function(node, data){
-    var currentNode = node.root;
+  BST.prototype.delete = function(data){
+    console.log(this.root)
+    var currentNode = this.root;
     var parent = null;
     var min = null;
     var max = null;
-
-    while(currentNode.data !== data){
-      if(currentNode.data < data){
-        parent = currentNode;
+    // traverse tree to find data
+    while(currentNode != null){
+      if(currentNode.data === data){
+        break;
+      }
+      parent = currentNode;
+      if(data < currentNode.data){
         currentNode = currentNode.left;
       } else {
-        parent = currentNode;
         currentNode = currentNode.right;
       }
       if(currentNode === null){
         return null;
       }
     }
-
+        // console.log("CURREENT", currentNode.data)
+    //case1: leaf node
     if(currentNode.left === null && currentNode.right === null){
       if(currentNode.data < parent.data){
         parent.left = null;
@@ -126,22 +130,29 @@ var BST = (function(){
         parent.right = null;
       }
     }
-    //case 2: one child - left
-    if(currentNode.left && (currentNode.right === null)){
-      parent.left = currentNode.left;
-    }
-
-    //case 2: one child - right
-    if(currentNode.right && (currentNode.left === null)){
-        parent.right = currentNode.right;
+    //case 2: one child
+    if(currentNode.right !== null || currentNode.left !== null){
+      if(parent == null){
+        if(currentNode.left != null){
+          return currentNode.left;
+        } else {
+          return currentNode.right;
+        }
       }
+      if(currentNode == parent.right){
+        parent.right = currentNode.left != null ? currentNode.left : currentNode.right;
+      } else {
+        parent.left = currentNode.left != null ? currentNode.left : currentNode.right;
+      }
+    }
     //case 3: two children
     if(currentNode.left && currentNode.right){
-      max = currentNode.left.findMax();
-      console.log(max);
+     console.log("two children current node:", currentNode, "parent:", parent)
+      // max = currentNode.left.findMax();
+      // console.log("MAX", max);
       ///===============
-
     }
+    return this.root;
   }
 
 

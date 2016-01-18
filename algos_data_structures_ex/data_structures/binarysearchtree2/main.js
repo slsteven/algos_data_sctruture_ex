@@ -17,11 +17,18 @@ bst.insert(2);
 // bst.preOrder(bst.root);
 // console.log("\n\nPOST ORDER");
 // bst.postOrder(bst.root);
-console.log("\n\nMINIMUM VALUE");
-console.log(bst.getMin());
-console.log("\n\nMAXIMUM VALUE");
-console.log(bst.getMax());
-console.log("\n\nFind node with data 3");
-console.log(bst.find(22));
+// console.log("\n\nMINIMUM VALUE");
+// console.log(bst.getMin());
+// console.log("\n\nMAXIMUM VALUE");
+// console.log(bst.getMax());
+// console.log("\n\nFind node with data 3");
+// console.log(bst.find(22));
+
+result = bst.delete(45);
+console.log("DELETE RESULT", result)
 
 
+//         23
+//     16      45
+//   3   22  37  99
+// 2           38

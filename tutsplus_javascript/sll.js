@@ -92,6 +92,7 @@ Singlylist.prototype.reverse = function(){
   var next = null;
   var before = null;
   while(currentNode){
+
     after = currentNode.next;
     currentNode.next = before;
 
