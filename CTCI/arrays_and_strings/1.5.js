@@ -14,11 +14,12 @@ function compress(str){
     } else {
       console.log(count)
 
-      new_str += str.charAt(i) + count;
+      new_str += str[i] + count;
       count = 1;
-      console.log("STR", new_str)
+
     }
   }
+  console.log("STR", new_str)
 }
 
 compress(str);
