@@ -57,9 +57,9 @@ var ssl = new Singlylist();
 ssl.add(5);
 ssl.add(19);
 ssl.add(11);
+ssl.add(19);
+ssl.add(5);
 ssl.add(4);
-ssl.add(18);
-ssl.add(3);
 // console.log(ssl);
 // var result = ssl.removeDups();
 // console.log(result);
@@ -201,15 +201,39 @@ Singlylist.prototype.sumDigits = function(list1, list2){
   return new_res;
 }
 
-var l1 = new Singlylist();
-l1.add(7);
-l1.add(1);
-l1.add(6);
+// var l1 = new Singlylist();
+// l1.add(7);
+// l1.add(1);
+// l1.add(6);
 
-var l2 = new Singlylist();
-l2.add(5);
-l2.add(9);
-l2.add(2);
-var result = ssl.sumDigits(l1, l2)
-console.log("result", result)
+// var l2 = new Singlylist();
+// l2.add(5);
+// l2.add(9);
+// l2.add(2);
+// var result = ssl.sumDigits(l1, l2)
+// console.log("result", result)
 
+
+//can use reverse also
+Singlylist.prototype.palindrome = function(){
+  var arr = [];
+  var currentNode = this.head;
+  while(currentNode != null){
+    arr.push(currentNode.data);
+    currentNode = currentNode.next;
+  }
+  var index = 0;
+  var leng = arr.length-1;
+  while(index <= arr.length/2){
+    if(arr[index] == arr[leng]){
+      index++;
+      leng--;
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+
+var result = ssl.palindrome();
+console.log(result);
