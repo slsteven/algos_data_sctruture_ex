@@ -30,7 +30,6 @@ Singlylist.prototype.add = function(value){
   }
 }
 Singlylist.prototype.removeDups = function(){
-  var count = 0;
   var currentNode = this.head;
   var prev_node = null;
   var my_hash = {};

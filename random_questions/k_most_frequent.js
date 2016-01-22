@@ -9,7 +9,6 @@ var arr = [1, 30, 2, 2, 5, 30, 5, 2];
 function kthinArray(arr){
   var hash = {};
   var count = 1;
-  var leng = 0;
 
   var sorted = arr.sort();
   console.log(sorted);
@@ -20,13 +19,12 @@ function kthinArray(arr){
     else {
       hash[arr[i]] = count;
       count = 1;
-      leng++;
     }
   }
   var new_arr = [];
-  console.log(hash, leng);
   for(var obj in hash){
     console.log(hash[obj]);
+    //use count for index
     if(new_arr[hash[obj]] == null){
      new_arr[hash[obj]] = [obj];
     } else {
