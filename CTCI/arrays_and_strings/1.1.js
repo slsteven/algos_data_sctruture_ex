@@ -2,18 +2,18 @@
 
 
 //O(n)
-var str = "this ia string";
+var str = "asdf";
 
 function isUnique(str){
   var letter;
-  var hash = {};
+  var arr = [];
   for(var i = 0; i < str.length; i++){
     letter = str.charCodeAt(i);
     console.log(letter);
-    if(hash[letter]){
+    if(arr[letter]){
       return false;
     } else {
-      hash[letter] = true;
+      arr[letter] = true;
     }
   }
    return true;

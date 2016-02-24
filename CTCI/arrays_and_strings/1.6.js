@@ -4,29 +4,33 @@
 
 var matrix = [
   [1, 0, 0, 2],
-  [0, 0, 0, 0],
-  [0, 0, 0, 0],
+  [0, 3, 4, 0],
+  [0, 5, 6, 0],
   [4, 0, 0, 3]
 ]
 
 function rotate(matrix, x){
-  console.log(matrix);
-  //move 8 spaces to turn 90 degrees
-  for(var side = 0; side < x / 2; side++){
-    var first = side;
-    for(var i = first; i < 7; i++){
-      for
-i = 0 to n
-2 temp = top[i]j
-3 top[i] = leftfi]
-CrackingTheCodinglnterview.com 179
-Solutions to Chapter 1 | Arrays and Strings
-4 leftfi] = bottom[i]
-bottom[i] = right[i]
-6 right[i] = temp
-    }
+  var top = [];
+  var left = [];
+  var right = [];
+  var bot = [];
+  var leng = matrix.length -1;
+  for(var j = 0; j < x / 2; j++){
+    var first = j; //outside layer
+    var end = n - 1 - j; //last element according to layer
+    for(var i = first; i < end; i++){
 
+      //top
+      top.push(matrix[0][i]);
+
+      right.push(matrix[i][leng])
+
+      bot.push(matrix[3][i])
+
+      left.push(matrix[i][0])
+    }
   }
+  console.log(top, right, bot, left)
 }
 
-rotate(matrix, 16);
+rotate(matrix, 4);

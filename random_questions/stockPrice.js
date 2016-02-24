@@ -4,7 +4,7 @@
 
 function stockPrice(arr){
   var hash = {};
-
+  ////dont really need this. Taken from ksum problem
   //caluclate number of possible combinations
   var n = arr.length;
   var k_len = 2
@@ -58,7 +58,7 @@ function stockPrice(arr){
 
 console.log(stockPrice([55.39, 109.23, 48.29, 81.59, 105.53, 94.45, 12.24]))
 
-
+///can improve speed by just iterating once. Dont really need any of the combo stuff.
 
 
 
