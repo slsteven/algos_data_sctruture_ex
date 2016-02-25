@@ -8,29 +8,37 @@ var matrix = [
   [0, 5, 6, 0],
   [4, 0, 0, 3]
 ]
+ // [ 4, 0, 0, 1 ],
+ //  [ 0, 0, 3, 0 ],
+ //   [ 4, 5, 6, 0 ],
+ //   [ 3, 0, 0, 2 ] ]
 
-function rotate(matrix, x){
-  var top = [];
-  var left = [];
-  var right = [];
-  var bot = [];
-  var leng = matrix.length -1;
-  for(var j = 0; j < x / 2; j++){
+function rotate(matrix, x) {
+
+
+  for(var j = 0; j < x / 2; j++) {
     var first = j; //outside layer
-    var end = n - 1 - j; //last element according to layer
-    for(var i = first; i < end; i++){
+    var end = x - 1 - j; //last element according to layer
+    for(var i = first; i < end; i++) { //iterate through each "side"
+      var offset = i - first;
+      //temp
+      var temp = matrix[first][i];
 
-      //top
-      top.push(matrix[0][i]);
+      //left to top
+      matrix[first][i] = matrix[end - offset][first];
 
-      right.push(matrix[i][leng])
+      //bot to left
+      matrix[end  - offset][first] = matrix[end][end - offset];
 
-      bot.push(matrix[3][i])
+      //right to bot
+      matrix[end][end - offset] = matrix[i][end];
 
-      left.push(matrix[i][0])
+      //top to right
+      matrix[i][end] = temp;
     }
   }
-  console.log(top, right, bot, left)
+  console.log(matrix)
+
 }
 
 rotate(matrix, 4);
