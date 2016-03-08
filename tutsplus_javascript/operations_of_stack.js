@@ -117,11 +117,11 @@ Queue.prototype.display = function(){
 
 }
 
-myque = new Queue();
-myque.enqueue(10);
-console.log(myque);
-myque.dequeue(10);
-console.log(myque);
+// myque = new Queue();
+// myque.enqueue(10);
+// console.log(myque);
+// myque.dequeue(10);
+// console.log(myque);
 
 
 module.exports = Stack;

@@ -1,20 +1,30 @@
-### tutsplus_javascript ###
+### Problems from tutsplus_javascript ###
 * Short data structure review on:
-  ** Stacks
-  ** Queues
-  ** SLL
-  ** DLL
-  ** Tree
+  * Stacks
+  * Queues
+  * SLL
+  * DLL
+  * Tree
 
-### examples from CD ###
+### Coding Dojo Review ###
 * Bits: bit minipulation
 * Sorts:
-  ** Asymptotic review
-  ** Bubble
-  ** Selection
-  ** Insertion
-  ** Merge
-  ** Quick
+  * Asymptotic review
+  * Bubble Sort
+  * Selection Sort
+  * Insertion Sort
+  * Merge Sort
+  * Quick Sort
 * Data structures:
-  ** Merge sort with sll
-  ** Binary Search Tree I
+  * Merge sort with sll
+  * Binary Search Tree I
+
+### Problems from Codility ###
+
+### Problems CTCI ###
+* Arrays and Strings
+* Linkedlists
+* Stacks and Queues
+
+### Random ###
+  * ksum, k_most_frequent, StockPrice, justify, etc.
