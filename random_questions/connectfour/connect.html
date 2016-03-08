@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Connect Four</title>
+   <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+   <style type="text/css">
+    #container{
+      /*background-color: black;*/
+      position: relative;
+    }
+    .cell {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      border: 1px solid;
+    }
+    </style>
+</head>
+<body>
+
+  <h1>Connect Four</h1>
+  <button type="button">Play</button>
+
+  <div class="game"></div>
+
+  <div id="container">
+    <div id="board"></div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('button').click(function(){
+        create_board();
+      })
+    })
+
+
+  var boardData = [
+    ['*','*','*','*','*','*','*'],
+    ['*','*','*','*','*','*','*'],
+    ['*','*','*','*','*','*','*'],
+    ['*','*','*','*','*','*','*'],
+    ['*','*','*','*','*','*','*'],
+    ['*','*','*','*','*','*','*']
+  ]
+
+
+
+  function create_board(board) {
+    // clear children
+    var bd = document.getElementById('board');
+    bd.innerHTML = '';
+
+    //create rows
+    //<div class="row"></div>
+    for(var r = 0; r < board.length; r++) {
+      var row_ele = document.createElement('div');
+      row_ele.classList.add('row');
+
+      bd.appendChild(row_ele);
+      //add columns (cells) to rows
+      //<div class="cell" id="00"></div>
+      for(var c = 0; c < board[0].length; c++){
+        var cell_ele = document.createElement('div');
+        cell_ele.classList.add('cell');
+        cell_ele.id = '' + r + c;
+
+        //add style if player makes a move
+        if(board[r][c] === 'X'){
+          cell_ele.setAttribute("style", "background-color: blue")
+        }
+
+        if(board[r][c] === 'O'){
+          cell_ele.setAttribute("style", "background-color: red")
+        }
+        row_ele.appendChild(cell_ele);
+      }
+    }
+  }
+
+  create_board(boardData);
+
+  function determineRow(board, colNo) {
+   for (var rowNo=board.length-1; rowNo >=0; rowNo--) {
+     if (board[rowNo][colNo] === '*') {
+       break;
+     }
+   }
+   return rowNo;
+  }
+
+  function checkWinner(board) {
+    for (var r = 0; r < 6; r++) {
+      for (var c = 0; c < 4; c++){
+        //vertically
+        if((r-3 > 0) && (r-3 <= 6 )) {
+          if (board[r][c] == "X" && board[r-1][c] == "X" && board[r-2][c] == "X" && board[r-3][c] == "X"){
+            //console.log("p1 wins")
+            console.log("Player1 Wins!")
+          }
+          if (board[r][c] == "O" && board[r-1][c] == "O" && board[r-2][c] == "O" && board[r-3][c] == "O"){
+           console.log("Player2 Wins!")
+          }
+        }
+
+        //horizontally
+        if (board[r][c] == "X" && board[r][c+1] == "X" && board[r][c+2] == "X" && board[r][c+3] == "X"){
+          //console.log("p1 wins")
+          console.log("Player1 Wins!")
+        }
+        if (board[r][c] == "O" && board[r][c+1] == "O" && board[r][c+2] == "O" && board[r][c+3] == "O"){
+         console.log("Player2 Wins!")
+       }
+
+
+
+        //diagonally
+        if (board[r][c] == "X" && board[r-1][c+1] == "X" && board[r-2][c+2] == "X" && board[r-3][c+3] == "X"){
+          //console.log("p1 wins")
+          console.log("Player1 Wins!")
+        }
+        if (board[r][c] == "O" && board[r-1][c+1] == "O" && board[r-2][c+2] == "O" && board[r-3][c+3] == "O"){
+         console.log("Player2 Wins!")
+       }
+
+
+       if (board[r][c] == "X" && board[r-1][c-1] == "X" && board[r-2][c-2] == "X" && board[r-3][c-3] == "X"){
+          //console.log("p1 wins")
+          console.log("Player1 Wins!")
+        }
+        if (board[r][c] == "O" && board[r-1][c-1] == "O" && board[r-2][c-2] == "O" && board[r-3][c-3] == "O"){
+         console.log("Player2 Wins!")
+        }
+      }
+    }
+  }
+
+
+  var player1 = 'X';
+  var player2 = 'O';
+  var moves = [];
+  var turn = 0;
+
+  document.getElementById('board').onclick = function(e) {
+
+    var id = e.target.id; // i.e. '10'
+    var col = id[1];
+    var row = determineRow(boardData, col);
+    console.log(id, row, col);
+    console.log(boardData)
+
+    //take turns making moves, player 1 goes first
+    if(col === undefined) {
+      console.log("ERROR, click on a box")
+    } else {
+      turn++;
+      if(turn % 2 === 0) {
+        boardData[row][col] = player2;
+
+      } else {
+        boardData[row][col] = player1;
+      }
+    }
+    console.log(turn);
+    create_board(boardData);
+    checkWinner(boardData, row, col)
+  }
+
+
+  // (function($) {
+  //   console.log($)
+  // })(jQuery)
+  </script>
+<!--    // <script src ='connect.js'></script> -->
+</body>
+</html>
