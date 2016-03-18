@@ -1,18 +1,30 @@
 var BinarySearchTree = require('./bst');
 
 var bst = new BinarySearchTree();
-bst.insert(23);
-bst.insert(45);
-bst.insert(16);
-bst.insert(37);
-bst.insert(3);
-bst.insert(99);
-bst.insert(22);
-bst.insert(38);
-bst.insert(2);
+
+bst.insert(6)
+bst.insert(2)
+bst.insert(8)
+bst.insert(1)
+
+bst.insert(4)
+bst.insert(3)
+
+
+
+//console.log(bst.root);
+// bst.insert(23);
+// bst.insert(45);
+// bst.insert(16);
+// bst.insert(37);
+// bst.insert(3);
+// bst.insert(99);
+// bst.insert(22);
+// bst.insert(38);
+// bst.insert(2);
 
 // console.log("\n\nIN ORDER");
-// bst.inOrder(bst.root);
+// console.log(bst.inOrder(bst.root));
 // console.log("\n\nPRE ORDER");
 // bst.preOrder(bst.root);
 // console.log("\n\nPOST ORDER");
@@ -24,11 +36,9 @@ bst.insert(2);
 // console.log("\n\nFind node with data 3");
 // console.log(bst.find(22));
 
-result = bst.delete(45);
-console.log("DELETE RESULT", result)
+//result = bst.delete(45);
+//console.log("DELETE RESULT", result)
 
 
-//         23
-//     16      45
-//   3   22  37  99
-// 2           38
+console.log(bst.levelOrder(bst.root));
+

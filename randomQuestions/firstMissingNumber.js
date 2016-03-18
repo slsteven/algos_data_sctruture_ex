@@ -1,3 +1,5 @@
+// Given an unsorted array of n integers which can contain integers from 1 to n. Some elements can be repeated multiple times and some other elements can be absent from the array. Count frequency of all elements that are present and print the missing elements.
+
 //find the first missing positive number
 //input: [-2, 0, 2, 3]
 //output: 1
@@ -10,7 +12,7 @@
 
 //take time and space complexity into consideration
 
-var input = [5, 1, 2, 4];
+var input = [-1, -3, 5, 1, 2, -7, 4];
 
 
 //run time is O(n log n) because of the sort;
@@ -38,15 +40,15 @@ function findMissing1(arr) {
 };
 
 console.log("findMissing1: ", findMissing1(input));
+console.log('========================================');
 
-//solution for improving run time
-
+//solution for improving run time by creating a copy array and keeping track with a counter
+//However this solution will by O(n) space
 function findMissing2(arr) {
   var currentNumber = 0;
 
   var sortedCopy = new Array(arr.length);
   //build a new array and assign the index with values from original array
-
   for (var j = 0; j < arr.length; j++) {
      sortedCopy[arr[j]] = arr[j];
   };
@@ -69,14 +71,35 @@ function findMissing2(arr) {
 };
 
 console.log("findMissing2: ", findMissing2(input));
+console.log('========================================');
 
-//solution for improving run time and space
+
+
+//optimizing for O(n) time and O(1) space
 function findMissing3(arr) {
-  var currentNumber = 0;
-  var temp = []
+  var tempSwap;
+  //variable to track index of last swapped negative number
+  var j = 0;
+  //segregate all negative numbers to the left and positive to the right
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] <= 0) {
+      tempSwap = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tempSwap;
+      j++;
+    };
+  };
 
+  for (var j = 0; j < arr.length; j++) {
+    if (arr[j] >= 1) {
+      if (arr[j] + 1 !== arr[j+1]) {
+        return arr[j] + 1;
+      };
+    };
+  };
 };
 
-console.log("findMissing2: ", findMissing2(input));
+console.log("findMissing3: ", findMissing3(input));
+console.log('========================================');
 
 

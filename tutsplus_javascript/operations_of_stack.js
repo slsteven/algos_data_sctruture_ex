@@ -100,7 +100,7 @@ Queue.prototype.enqueue = function(data){
 };
 
 //remove
-Queue.prototype.dequeue = function(data){
+Queue.prototype.dequeue = function(){
 
   if(this._oldestIndex !== this._newestIndex){
 
@@ -124,4 +124,4 @@ Queue.prototype.display = function(){
 // console.log(myque);
 
 
-module.exports = Stack;
+module.exports = Queue;
