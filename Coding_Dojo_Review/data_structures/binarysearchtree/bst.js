@@ -1,6 +1,5 @@
 var Node = require('./node');
 var Queue = require('../../../tutsplus_javascript/operations_of_stack');
-console.log(Queue)
 
 var BST = (function(){
   function BST() {
