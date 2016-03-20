@@ -21,10 +21,11 @@
 
 ### Problems from Codility ###
 
-### Problems CTCI ###
+### Problems from CTCI ###
 * Arrays and Strings
 * Linkedlists
 * Stacks and Queues
+* Trees and Graphs
 
 ### Random ###
-  * ksum, k_most_frequent, StockPrice, justify, etc.
+  * ksum, kMostFrequent, StockPrice, justify, etc.

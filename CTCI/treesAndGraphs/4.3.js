@@ -29,8 +29,22 @@ var input = [1, 3, 4, 7, 9, 10, 11];
 var tree = createBST(input, 0, input.length - 1);
 
 //use in order traversal
-function checkIfBst(node) {
-  console.log(node);
+function checkIfBst(node, result) {
+  if (node === null) {
+    return;
+  };
+
+  var currentNode = node;
+  if (currentNode.left !== null) {
+    checkIfBst(currentNode.left, result);
+  };
+  console.log(currentNode.data);
+  result.push(currentNode.data);
+  if (currentNode.right !== null) {
+    checkIfBst(currentNode.right, result);
+  };
+  return result
 };
 
-checkIfBst(tree);
+var res = checkIfBst(tree, []);
+console.log(res);
