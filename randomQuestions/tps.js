@@ -27,76 +27,59 @@
 var _ = require('underscore')
 
 function Iterator(arr){
-  this.arr = arr;
+  this.array = arr;
+  this.subArrayIndex = this.array[2];
+  this.elementIndex = 0;
 
-  this.sub_idx = null;
-  this.main_idx = null;
-
-  for (var i = 0; i < this.arr.length; i++) {
-    if(this.arr[i] != null){
-      for(var j = 0; j < this.arr[i].length; j++){
-        this.sub_idx = j;
-        this.main_idx = i;
-        break;
-      }
-    }
-  break;
-  }
 }
 
 Iterator.prototype.has_next = function(){
-  if(this.arr[this.main_idx] != null){
-    if(this.arr[this.main_idx][this.sub_idx+1]){
-      return true;
-    } else {
-      return false;
-    }
-  } return false;
-}
-
-Iterator.prototype.print = function(){
-  console.log(_.flatten(this.arr))
-}
+  if (this.array !== null) {
+    if (this.subArrayIndex.length !== 0) {
+      if (this.subArrayIndex[this.elementIndex + 1] !== undefined) {
+        console.log("true", this.subArrayIndex[this.elementIndex + 1]);
+        var nextElement = this.subArrayIndex[this.elementIndex + 1];
+        return true;
+      } else {
+        console.log("false");
+        return false;
+      };
+    };
+  };
+};
 
 Iterator.prototype.next = function(){
 
-  if(this.arr[this.main_idx] == null || this.arr[this.main_idx].length == 0){
-    this.main_idx += 1;
-    this.sub_idx = 0;
-  }
-
-  if(this.sub_idx < this.arr[this.main_idx].length -1){
-    this.sub_idx += 1;
-  }
-
-
-  console.log(this)
-  console.log("++++++++", this.arr[this.main_idx][this.sub_idx]);
 }
 
 
 Iterator.prototype.remove = function(val){
-  var my_arr = this.arr;
-  for(var i = 0; i < my_arr.length; i++){
-    if(Object.prototype.toString.call(my_arr[i]) === '[object Array]'){
-      for(var j = 0; j < my_arr[i].length; j++){
-        if(my_arr[i][j] === val){
-          var idx_to_delete = my_arr[i].indexOf(val);
-          my_arr[i].splice(idx_to_delete, 1);
-        }
-      }
-    }
-  }
-  return my_arr;
+  // var my_arr = this.arr;
+  // for(var i = 0; i < my_arr.length; i++){
+  //   if(Object.prototype.toString.call(my_arr[i]) === '[object Array]'){
+  //     for(var j = 0; j < my_arr[i].length; j++){
+  //       if(my_arr[i][j] === val){
+  //         var idx_to_delete = my_arr[i].indexOf(val);
+  //         my_arr[i].splice(idx_to_delete, 1);
+  //       }
+  //     }
+  //   }
+  // }
+  // return my_arr;
 }
 
 var arr = [[],[],[1,2,3],[4,5],[],[],[6],[7,8],[],[9],[10],[]];
-var my_iterator = new Iterator(arr);
-var result = my_iterator.has_next();
-my_iterator.next()
-my_iterator.next()
-my_iterator.next()
-my_iterator.next()
+var myIterator = new Iterator(arr);
+console.log(myIterator)
+
+myIterator.has_next();
+
+
+// var result = my_iterator.has_next();
+// my_iterator.next()
+// my_iterator.next()
+// my_iterator.next()
+// my_iterator.next()
 // my_iterator.next()
 // //my_iterator.remove(1)
 //my_iterator.print();
@@ -105,33 +88,3 @@ my_iterator.next()
 //var result = my_iterator.next(7);
 //console.log(result);
 
-
-
-// Iterator.prototype.next = function(val){
-//   var check = this.has_next(val);
-//   if(check){
-//     var flat_arr = _.flatten(this.arr, true);
-//     var val_idx = _.indexOf((flat_arr), val);
-//     return flat_arr[val_idx + 1]
-//   } else {
-//     return "has no next"
-//   }
-// }
-
-// Iterator.prototype.has_next = function(val){
-//   var my_arr = this.arr;
-//   for(var i = 0; i < my_arr.length; i++){
-//     if(Object.prototype.toString.call(my_arr[i]) === '[object Array]'){
-//       for(var j = 0; j < my_arr[i].length; j++){
-//         if(my_arr[i][j] === val){
-//           if(my_arr[i][j+1]){
-//             return true;
-//           } else {
-//             return false;
-//           }
-//         }
-//       }
-//     }
-//   }
-//   return false;
-// }

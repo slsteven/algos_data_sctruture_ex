@@ -1,3 +1,5 @@
+var Queue = require('./operations_of_stack')
+
 //trees
 //Depth-First Search (DFS) uses stack
 //Breadth-First Search (BFS) uses queue
@@ -68,12 +70,12 @@ Tree.prototype.add = function(data, toData, traversal) {
     }
 };
 
-var tree = new Tree('one');
-
-tree._root.children.push(new Node('two'));
+var tree = new Tree('A');
+console.log(tree);
+tree._root.children.push(new Node('B'));
 tree._root.children[0].parent = tree;
 
-tree._root.children.push(new Node('three'));
+tree._root.children.push(new Node('C'));
 tree._root.children[1].parent = tree;
 
 tree._root.children.push(new Node('four'));
@@ -87,7 +89,9 @@ tree._root.children[0].children[1].parent = tree._root.children[0];
 
 tree._root.children[2].children.push(new Node('seven'));
 tree._root.children[2].children[0].parent = tree._root.children[2];
+console.log(tree._root)
+tree.traverseBF
 
-tree.traverseDF(function(node){
+(function(node){
   console.log(node.data);
 })

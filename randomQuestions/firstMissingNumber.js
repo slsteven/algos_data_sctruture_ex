@@ -25,14 +25,12 @@ function findMissing1(arr) {
       //have counter start when index is at input value 1 and then move it at the same time as loop
       if (sorted[i] === 1) {
         currentNumber = 1;
-      }
-      if (sorted[i] === currentNumber) {
-        currentNumber++;
-        var nextNumber = currentNumber
-        if (sorted[i+1] !== nextNumber) {
-          return nextNumber;
-        };
       };
+
+      if (sorted[i] + 1 !== sorted[i+1] && currentNumber > 0) {
+        return sorted[i] + 1;
+      };
+
       if (i === sorted.length && currentNumber === 0) {
         return 1;
       };
@@ -47,23 +45,22 @@ console.log('========================================');
 function findMissing2(arr) {
   var currentNumber = 0;
 
-  var sortedCopy = new Array(arr.length);
+  var sortedCopy = [];
   //build a new array and assign the index with values from original array
   for (var j = 0; j < arr.length; j++) {
      sortedCopy[arr[j]] = arr[j];
   };
 
   for (var i = 0; i < sortedCopy.length; i++) {
+    //have counter start when index is at input value 1 and then move it at the same time as loop
     if (sortedCopy[i] === 1) {
       currentNumber = 1;
     };
-    if (sortedCopy[i] === currentNumber) {
-      currentNumber++;
-      var nextNumber = currentNumber
-      if (sortedCopy[i+1] !== nextNumber) {
-        return nextNumber
-      };
+
+    if (sortedCopy[i] + 1 !== sortedCopy[i+1] && currentNumber > 0) {
+      return sortedCopy[i] + 1;
     };
+
     if (i === sortedCopy.length && currentNumber === 0) {
       return 1;
     };
@@ -89,7 +86,7 @@ function findMissing3(arr) {
       j++;
     };
   };
-
+  console.log(arr, j);
   for (var j = 0; j < arr.length; j++) {
     if (arr[j] >= 1) {
       if (arr[j] + 1 !== arr[j+1]) {
@@ -103,3 +100,5 @@ console.log("findMissing3: ", findMissing3(input));
 console.log('========================================');
 
 
+var test = [-4]
+console.log(test)

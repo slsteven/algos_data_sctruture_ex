@@ -1,6 +1,6 @@
 //reverse a string
 
-var foobar = "foobar";
+var foobar = "foo";
 
 function reverse(str) {
   var rev = '';
@@ -13,11 +13,11 @@ function reverse(str) {
 //reverse in place
 function reverse2(str) {
   var temp = '';
-  var mid = Math.floor(5/2);
+  var mid = str.length/2;
 
   var str = str.split("");
 
-  for(var i = 0; i <= mid; i++){
+  for(var i = 0; i < mid; i++){
     temp = str[i];
     str[i] = str[str.length -1 - i];
     str[str.length -1 - i] = temp;
