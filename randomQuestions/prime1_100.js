@@ -1,23 +1,26 @@
+//A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+//2 is a prime
+
 function prime(num){
   var primes = [];
-  for(var i = 1; i <= num; i++){
-    if(i === 2){
+  for (var i = 2; i <= num; i++) {
+    if (i === 2) {
       primes.push(i);
-    }
-    else {
-      var prime_leng = primes.length;
-      for(var j = 0; j < prime_leng; j++){
-        if(i % primes[j] === 0){
+    } else {
+      var checkIfNumIsPrime = i;
+      for (var j = 2; j < checkIfNumIsPrime; j++) {
+        //not prime if remained is zero
+        if (i % j === 0) {
           break;
-        }
-        else if(j === prime_leng - 1) {
+        } else if (j === checkIfNumIsPrime -1 ) {
           primes.push(i);
-        }
-      }
-    }
-  }
-  return primes
-}
+        };
+      };
+    };
+  };
+  return primes;
+};
 
 
 console.log(prime(100));

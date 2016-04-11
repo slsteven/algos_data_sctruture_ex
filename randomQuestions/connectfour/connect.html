@@ -13,13 +13,26 @@
       height: 50px;
       display: inline-block;
       border: 1px solid;
+      margin-bottom: -4px;    }
+    .cell {
+      border-right: none;
+      border-bottom: none;
+    }
+    .row > .cell:last-child {
+      border-right: 1px solid;
+    }
+    #board .row:last-child > .cell{
+      border-bottom: 1px solid;
     }
     </style>
 </head>
 <body>
 
-  <h1>Connect Four</h1>
-  <button type="button">Play</button>
+  <a href="http://www.yahoo.com">here</a>
+  <div id="header">
+    <h1>Connect Four</h1>
+  </div>
+  <button id="play" type="button">Play</button>
 
   <div class="game"></div>
 
@@ -27,13 +40,54 @@
     <div id="board"></div>
   </div>
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $('button').click(function(){
-        create_board();
-      })
-    })
+  <div id="log">
+    <ul></ul>
+  </div>
 
+  <ul id="shoppingList">
+    <li class="complete"><a href="itemDone">Item1</a></li>
+    <li class="complete"><a href="itemDone">Item2</a></li>
+    <li class="complete"><a href="itemDone">Item3</a></li>
+    <li class="complete"><a href="itemDone">Item4</a></li>
+  </ul>
+  <script type="text/javascript">
+
+  function setup(){
+
+  };
+
+  window.addEventListener('resize', setup, false);
+
+
+  function itemDone(e) {
+    console.log(e)
+    if (e.srcElement.nodeName === 'A') {
+    var eleParent = e.srcElement.parentNode.parentNode;
+    var eleToDelete = e.srcElement.parentNode;
+    eleParent.removeChild(eleToDelete);
+    };
+  };
+
+  var list = document.getElementById('shoppingList');
+  if (list.addEventListener) {
+    list.addEventListener('click', function(e) {
+      e.preventDefault();
+      itemDone(e);
+    }, false);
+  } else {
+    list.attachEvent('onclick', function(e) {
+      itemDone(e);
+    });
+  };
+
+
+
+  var playButton = document.getElementById('play');
+
+  playButton.addEventListener('click', function(e) {
+    console.log(e);
+    create_board(boardData);
+  }, false);
 
   var boardData = [
     ['*','*','*','*','*','*','*'],
@@ -43,7 +97,6 @@
     ['*','*','*','*','*','*','*'],
     ['*','*','*','*','*','*','*']
   ]
-
 
 
   function create_board(board) {
@@ -74,20 +127,19 @@
           cell_ele.setAttribute("style", "background-color: red")
         }
         row_ele.appendChild(cell_ele);
-      }
-    }
-  }
+      };
+    };
+  };
 
-  create_board(boardData);
 
   function determineRow(board, colNo) {
    for (var rowNo=board.length-1; rowNo >=0; rowNo--) {
      if (board[rowNo][colNo] === '*') {
        break;
-     }
-   }
+     };
+   };
    return rowNo;
-  }
+  };
 
   function checkWinner(board) {
     for (var r = 0; r < 6; r++) {
@@ -96,21 +148,21 @@
         if((r-3 > 0) && (r-3 <= 6 )) {
           if (board[r][c] == "X" && board[r-1][c] == "X" && board[r-2][c] == "X" && board[r-3][c] == "X"){
             //console.log("p1 wins")
-            console.log("Player1 Wins!")
-          }
+            console.log("Player1 Wins!");
+          };
           if (board[r][c] == "O" && board[r-1][c] == "O" && board[r-2][c] == "O" && board[r-3][c] == "O"){
            console.log("Player2 Wins!")
-          }
-        }
+          };
+        };
 
         //horizontally
         if (board[r][c] == "X" && board[r][c+1] == "X" && board[r][c+2] == "X" && board[r][c+3] == "X"){
           //console.log("p1 wins")
           console.log("Player1 Wins!")
-        }
+        };
         if (board[r][c] == "O" && board[r][c+1] == "O" && board[r][c+2] == "O" && board[r][c+3] == "O"){
          console.log("Player2 Wins!")
-       }
+       };
 
 
 
@@ -121,19 +173,19 @@
         }
         if (board[r][c] == "O" && board[r-1][c+1] == "O" && board[r-2][c+2] == "O" && board[r-3][c+3] == "O"){
          console.log("Player2 Wins!")
-       }
+       };
 
 
        if (board[r][c] == "X" && board[r-1][c-1] == "X" && board[r-2][c-2] == "X" && board[r-3][c-3] == "X"){
           //console.log("p1 wins")
           console.log("Player1 Wins!")
-        }
+        };
         if (board[r][c] == "O" && board[r-1][c-1] == "O" && board[r-2][c-2] == "O" && board[r-3][c-3] == "O"){
          console.log("Player2 Wins!")
-        }
-      }
-    }
-  }
+        };
+      };
+    };
+  };
 
 
   var player1 = 'X';
@@ -156,21 +208,27 @@
       turn++;
       if(turn % 2 === 0) {
         boardData[row][col] = player2;
+        var log = document.getElementsByTagName('ul')[0];
+        var newEle = document.createElement('li');
+        var newEleText = document.createTextNode('Turn: ' + turn + ' Player 1 position: ' + col);
+        newEle.appendChild(newEleText);
+        log.appendChild(newEle);
 
       } else {
         boardData[row][col] = player1;
-      }
-    }
+        var log = document.getElementsByTagName('ul')[0];
+        var newEle = document.createElement('li');
+        var newEleText = document.createTextNode('Turn: ' + turn + ' Player 2 position: ' + col);
+        newEle.appendChild(newEleText);
+        log.appendChild(newEle);
+      };
+    };
     console.log(turn);
     create_board(boardData);
-    checkWinner(boardData, row, col)
-  }
+    checkWinner(boardData, row, col);
+  };
 
 
-  // (function($) {
-  //   console.log($)
-  // })(jQuery)
   </script>
-<!--    // <script src ='connect.js'></script> -->
 </body>
 </html>

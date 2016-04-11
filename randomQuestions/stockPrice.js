@@ -1,64 +1,67 @@
 // Given an array of stock prices, and the date of the current stock price, return the maximum profit that can be made.
 //55.39 109.23 48.29 81.59 105.53 94.45 12.24
 
+var input = [55.39, 109.23, 48.29, 81.59, 105.53, 94.45, 12.24];
 
-function stockPrice(arr){
-  var hash = {};
-  ////dont really need this. Taken from ksum problem
-  //caluclate number of possible combinations
-  var n = arr.length;
-  var k_len = 2
-  var k = 2;
-  var n_fac = 1;
-  var k_fac = 1;
-  //calculate n!
-  while(n >= 1){
-    n_fac *= n;
-    n--;
-  }
-  //calculate k!
-  while(k >= 1){
-    k_fac *= k;
-    k--;
-  }
-  //calculate k!(n-k)!
-  var diff = arr.length - k_len;
-  var diff_fac = 1;
-  while(diff >= 1){
-    diff_fac *= diff
-    diff--;
-  }
+function maxStockPrice(arr) {
+  var initialIdx = 0;
+  var finalIdx = 1;
+  var maxPrice = arr[finalIdx] - arr[initialIdx];
+  var summary;
+  var leng = arr.length;
 
-  var combos = n_fac / (k_fac * diff_fac);
-  //======================================================
-  var count = 0;
-  var i = 0;
-  var j = 1;
-  var best = 0;
+  while (initialIdx < leng) {
 
-  while(count < combos){
-  //to show only positive gains
-  //if(arr[i] < arr[j]){
-    var sum = arr[j] - arr[i];
-    hash[sum] = [arr[i], arr[j]]
-    if(sum > best){
-      best = sum;
-    }
-  //}
+    var current = arr[finalIdx] - arr[initialIdx];
 
-    j++
-    count++;
-    if(j == arr.length){
-      i++;
-      j = i+1;
-    }
-  }
-  return hash[best];
-}
+    if (current >= maxPrice) {
+      maxPrice = current;
+      summary = {
+        buy: arr[initialIdx],
+        sell: arr[finalIdx]
+      };
+    };
+    finalIdx++;
+    if (finalIdx == leng + 1) {
+      initialIdx++;
+      finalIdx = initialIdx + 1;
+    };
+  };
+  return summary;
+};
 
-console.log(stockPrice([55.39, 109.23, 48.29, 81.59, 105.53, 94.45, 12.24]))
+console.log(maxStockPrice(input));
 
-///can improve speed by just iterating once. Dont really need any of the combo stuff.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

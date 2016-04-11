@@ -6,18 +6,17 @@ var str = "asdf";
 
 function isUnique(str){
   var letter;
-  var arr = [];
+  var hash = {};
   for(var i = 0; i < str.length; i++){
     letter = str.charCodeAt(i);
-    console.log(letter);
-    if(arr[letter]){
+    if(hash[letter]){
       return false;
     } else {
-      arr[letter] = true;
-    }
-  }
-   return true;
-}
+      hash[letter] = true;
+    };
+  };
+  return true;
+};
 
 var result = isUnique(str);
 console.log(result);

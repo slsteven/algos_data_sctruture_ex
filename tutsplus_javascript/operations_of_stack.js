@@ -20,23 +20,19 @@ Stack.prototype.push = function(data){
     this.min = data;
     this.min_storage[data] = data;
   } else {
-
     if(data < this.min) {
       this.min = data;
-    }
-
+    };
     this.min_storage[data] = data;
-  }
+  };
 };
 
 //use stacks current size to get last added data
-//delete most recent data
-//decrement size
+//delete most recent data and decrement size
 Stack.prototype.pop = function(){
   //decrease size of storage
   var size = this._size;
   var data_to_delete;
-  console.log(size);
   if (size > 0) {
 
     data_to_delete = this._storage[size - 1];
@@ -46,14 +42,14 @@ Stack.prototype.pop = function(){
       for (first in this.min_storage) {
         this.min = first;
         break;
-      }
-    }
+      };
+    };
 
     delete this._storage[size-1];
     this._size--;
 
-    return data_to_delete
-  }
+    return data_to_delete;
+  };
 };
 
 Stack.prototype.empty = function() {
@@ -61,16 +57,15 @@ Stack.prototype.empty = function() {
     return false;
   } else {
     return true;
-  }
-}
+  };
+};
 
 Stack.prototype.display = function() {
-  console.log(this);
-}
+};
 
 Stack.prototype.min = function() {
 
-}
+};
 
 var stack = new Stack();
 stack.push(5);
@@ -79,49 +74,48 @@ stack.push(1);
 
 
 function Queue(){
-
   this._oldestIndex = 1;
   this._newestIndex = 1;
   this._storage = {};
-
 };
 
 Queue.prototype.size = function(){
-
   return this._newestIndex - this._oldestIndex;
-
 };
 
 Queue.prototype.enqueue = function(data){
-
-  this._storage[this._newestIndex] = data;
-  this._newestIndex++;
-
+  //queue is empty
+  if (this._oldestIndex === this._newestIndex) {
+    this._storage[this._oldestIndex] = data;
+    this._newestIndex++;
+  } else {
+    this._storage[this._newestIndex] = data;
+    this._newestIndex++;
+  };
 };
 
-//remove
 Queue.prototype.dequeue = function(){
-
-  if(this._oldestIndex !== this._newestIndex){
-
-    var oldestIndex = this._oldestIndex;
-    var data_to_delete = this._storage[oldestIndex];
-    delete this._storage[oldestIndex];
+  var dequeuedVal;
+  if (this._oldestIndex === this._newestIndex) {
+    return 'empty';
+  } else {
+    dequeuedVal = this._storage[this._oldestIndex];
+    delete this._storage[this._oldestIndex];
     this._oldestIndex++;
-
-    return data_to_delete;
-  }
+  };
+  return dequeuedVal;
 };
 
 Queue.prototype.display = function(){
 
 }
 
-// myque = new Queue();
-// myque.enqueue(10);
-// console.log(myque);
-// myque.dequeue(10);
-// console.log(myque);
+myque = new Queue();
+myque.enqueue(10);
+myque.enqueue(20);
+myque.enqueue(4);
+console.log(myque.dequeue());
+console.log(myque);
 
 
 module.exports = Queue;

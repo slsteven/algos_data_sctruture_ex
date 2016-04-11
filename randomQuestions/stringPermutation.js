@@ -26,8 +26,8 @@ function perm(str, start, end) {
   }
 };
 var input = 'abc'
-var leng = input.length
-perm(input, 0, leng)
+// var leng = input.length
+// perm(input, 0, leng)
 
 console.log(results)
 
@@ -51,7 +51,9 @@ function recPerm(rest, soFar) {
 
 }
 
-//recPerm(input, '');
+recPerm(input, '');
+
+
 
 
 
